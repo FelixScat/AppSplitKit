@@ -1,0 +1,16 @@
+PODS:
+  - AppSplitKit (0.1.0)
+
+DEPENDENCIES:
+  - AppSplitKit (from `../`)
+
+EXTERNAL SOURCES:
+  AppSplitKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AppSplitKit: 1d77cd4e8f3a2df3f813e6457e3a72b1f858f186
+
+PODFILE CHECKSUM: acb761ebeacdec6382b625af9c8e9dc83dfe9f11
+
+COCOAPODS: 1.7.5
