@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
   use this you can split appdelegate into different modules
                        DESC
-  s.homepage         = 'https://github.com/FelixPlus/AppSplitKit'
+  s.homepage         = 'https://github.com/FelixScat/AppSplitKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Felix' => 'Felix@gmail.com' }
   s.source           = { :git => 'https://github.com/Felix/AppSplitKit.git', :tag => s.version.to_s }
