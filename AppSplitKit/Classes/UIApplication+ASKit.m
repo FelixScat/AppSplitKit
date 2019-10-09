@@ -16,19 +16,26 @@
     
     ASKDelegate *asDelegate = [ASKDelegate proxy:delegate];
     [self as_setDelegate:asDelegate];
+    
+//    [self as_setDelegate:delegate];
 }
 
-static void as_swizzleInstanceMethod(Class cls, SEL originalSelector, Class targetCls, SEL swizzledSelector) {
+static void as_swizzleInstanceMethod(Class cls, SEL originalSelector, SEL swizzledSelector) {
     Method originalMethod = class_getInstanceMethod(cls, originalSelector);
-    Method swizzledMethod = class_getInstanceMethod(targetCls, swizzledSelector);
-    method_exchangeImplementations(originalMethod, swizzledMethod);
+    Method swizzledMethod = class_getInstanceMethod(cls, swizzledSelector);
+    BOOL didAddMethod = class_addMethod(cls, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
+    if (didAddMethod) {
+        class_replaceMethod(cls, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+    }else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
 }
 
 + (void)load {
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        as_swizzleInstanceMethod([self class], @selector(setDelegate:), [self class], @selector(as_setDelegate:));
+        as_swizzleInstanceMethod(self, @selector(setDelegate:), @selector(as_setDelegate:));
     });
 }
 

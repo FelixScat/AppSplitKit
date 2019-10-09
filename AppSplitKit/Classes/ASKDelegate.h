@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ASKDelegate : NSProxy <UIApplicationDelegate>
+@interface ASKDelegate : NSObject <UIApplicationDelegate>
 
 @property (readonly, nonatomic, strong) id<UIApplicationDelegate> originDelegate;
 

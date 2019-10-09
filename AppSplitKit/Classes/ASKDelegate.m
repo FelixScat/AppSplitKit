@@ -18,12 +18,15 @@
 @implementation ASKDelegate
 
 + (instancetype)proxy:(id<UIApplicationDelegate>)delegate {
-    return [[self alloc] withDelegate:delegate];
+    return [[self alloc] initWithDelegate:delegate];
 }
 
-- (instancetype)withDelegate:(id<UIApplicationDelegate>)delegate {
-    self.originDelegate = delegate;
-    [[ASManager shareManager] setDelegate:self];
+- (instancetype)initWithDelegate:(id<UIApplicationDelegate>)delegate {
+    self = [super init];
+    if (self) {
+        self.originDelegate = delegate;
+        [[ASManager shareManager] setDelegate:self];
+    }
     return self;
 }
 
@@ -62,7 +65,6 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
     
-    assert([_originDelegate isKindOfClass:[NSObject class]]);
     return [(NSObject *)_originDelegate methodSignatureForSelector:sel];
 }
 
