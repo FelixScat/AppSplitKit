@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AppSplitKit'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A light weight module for app  module'
   s.description      = <<-DESC
   use this you can split appdelegate into different modules
